@@ -6,7 +6,7 @@ const Recipe = require('./models/recipe');
 const app = express();
 
 //Connect to MongoDB
-mongoose.connect('mongodb+srv://fiona:9VuBTyF4U3G3fu7E@cluster0-xwrdv.mongodb.net/test?retryWrites=true&w=majority').then(()=>{
+mongoose.connect( 'mongodb+srv://fiona:9VuBTyF4U3G3fu7E@cluster0-xwrdv.mongodb.net/test?retryWrites=true&w=majority',{ useNewUrlParser: true }).then(()=>{
 	console.log("Successfully connected to MongoDB Atlas!")
 }).catch((error)=>{
 	console.log("Unable to connect to MongoDB Atlas!");
@@ -49,6 +49,18 @@ app.post('/api/recipes',(req, res, next)=>{
 app.use('/api/recipes',(req, res, next)=>{
 	Recipe.find().then((recipes)=>{
 		res.status(200).json(recipes);
+	}).catch((error)=>{
+		res.status(400).json({
+			error: error
+		});
+	});
+});
+
+// Get a recipe with the provided ID from the database
+app.use('/api/recipes/:id', (req, res, next)=>{
+	Recipe.findOne({_id: req.params.id}).then((recipe)=>{
+		console.log(recipe);
+		res.status(200).json(recipe);
 	}).catch((error)=>{
 		res.status(400).json({
 			error: error

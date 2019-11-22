@@ -24,14 +24,14 @@ Node and NPM
 
 ```
 cd into backend-recipe
-Run npm install
-Run nodemon server.js or node server.js
+npm install
+nodemon server.js or node server.js
 ```
 
 #### Frontend
 git clone https://github.com/queenfiona/frontend-recipe.git or download the zip folder
 ```
 cd into frontend-recipe
-Run npm install
-Run ng serve
+npm install
+ng serve
 ```

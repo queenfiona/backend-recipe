@@ -1,7 +1,7 @@
 const express = require('express');
 const body_parser = require('body-parser');
 const mongoose = require('mongoose');
-const Recipe = require('./models/thing');
+const Recipe = require('./models/recipe');
 
 const app = express();
 
@@ -23,5 +23,17 @@ app.use((req,res, next)=>{
 
 //Add middleware to pass incoming requests
 app.use(body_parser.json());
+//Create a recipe
+
+//Get all the recipes
+app.use('/api/recipes',(req, res, next)=>{
+	Recipe.find().then((recipes)=>{
+		res.status(200).json(recipes);
+	}).catch((error)=>{
+		res.status(400).json({
+			error: error
+		});
+	});
+});
 
 module.exports = app;

@@ -8,5 +8,5 @@ const recipeSchema = mongoose.Schema({
     time: {type: Number, required: true}
 });
 
-module.exports = mongoose.model('Recipe', thingSchema);
+module.exports = mongoose.model('Recipe', recipeSchema);
 

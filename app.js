@@ -25,6 +25,26 @@ app.use((req,res, next)=>{
 app.use(body_parser.json());
 //Create a recipe
 
+app.post('/api/recipes',(req, res, next)=>{
+	const recipe = new Recipe({
+		title: req.body.title,
+		ingredients: req.body.ingredients,
+		instructions: req.body.instructions,
+		difficulty: req.body.difficulty,
+		time: req.body.time
+	});
+
+	recipe.save().then(()=>{
+		res.status(201).json({
+			message: 'Recipe saved successfully'
+		})
+	}).catch((error)=>{
+		res.status(400).json({
+			error: error
+		});
+	});
+});
+
 //Get all the recipes
 app.use('/api/recipes',(req, res, next)=>{
 	Recipe.find().then((recipes)=>{

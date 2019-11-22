@@ -25,7 +25,7 @@ Node and NPM
 ```
 cd into backend-recipe
 Run npm install
-nodemon server.js or node server.js
+Run nodemon server.js or node server.js
 ```
 
 #### Frontend
@@ -33,5 +33,5 @@ git clone https://github.com/queenfiona/frontend-recipe.git or download the zip 
 ```
 cd into frontend-recipe
 Run npm install
-ng serve
+Run ng serve
 ```
